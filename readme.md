@@ -1,13 +1,8 @@
-This project works with python==3.7.10 and following dependancies:
-```
-pip install -U sentence-transformers
-pip install torchvision==0.11.2+cu113 -f https://download.pytorch.org/whl/cu113/torch_stable.html
-pip install torch==1.10.1+cu113 -f https://download.pytorch.org/whl/cu113/torch_stable.html
-```
-Also, to install pyserini you can find a complete description here:
-```commandline
+This project works with python==3.7.10.
 
-```
+To install pyserini you can find a complete description [here](https://github.com/castorini/pyserini).
+
+
 # 1. Data
 Download the MS MARCO Passage Ranking collection and queries and extract them into ./msmarco-data path:
 
