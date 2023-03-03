@@ -1,4 +1,6 @@
 This project works with python==3.7.10.
+Use ret_environment.yml to create and setup the conda env.
+
 
 To install pyserini you can find a complete description [here](https://github.com/castorini/pyserini).
 
@@ -22,6 +24,14 @@ The `msmarco-data` folder will contain the following files:
 2. queries.dev.tsv
 3. queries.eval.tsv
 4. queries.train.tsv
+
+
+Download qrels:
+
+```
+wget https://msmarco.blob.core.windows.net/msmarcoranking/qrels.train.tsv -P msmarco-data/
+```
+
 
 Download the shuffled msmarco training triplets (query, positive passage, negative passage) :
 
@@ -98,10 +108,10 @@ To do the retrieval with bi-encoders we need to first encode the collection usin
 We run `BE_test_encode.py` to encode the collection into embedding_path.
 ```
 python BE_test_encode.py \
- --model_path ./models/BE-bert-base-uncased-150k-max300/ \
+ --model_path ./models/BE-bert-base-uncased-[TL]-max300/ \
  --batch_size 256 \
  --collection_path ./msmarco-data/collection.tsv  \
- --embedding_path ./msmarco-data/embedding_path/50k_bert-base-uncased_300v.embd -\
+ --embedding_path ./msmarco-data/embedding_path/[TL]_bert-base-uncased_300v.embd -\
  -cuda 1
 ```
 
@@ -128,7 +138,7 @@ We can use the following to run the retrieval on the indexes:
 ```
 python -m pyserini.search.faiss   --index ../../msmarco-data/DR_faiss_index/[name/of/the/index] \
     --topics ../../msmarco-data/dt5q/GQ_queries.tsv \
-    --encoder ../../models/BE-bert-base-uncased-50k-max300/ \
+    --encoder ../../models/BE-bert-base-uncased-[TL]-max300/ \
     --output [path/for/the/run/file]  \
     --output-format trec   \
     --batch-size 36 \
@@ -145,7 +155,7 @@ python CE_test_ce.py --run_path [path/to/bm25/run/file] \
 --query_path ./msmarco-data/dt5q/GQ_queries.tsv \
 --collection_path ./msmarco-data/collection.tsv \
 --batch_size 64 \
---model_path ./models/msmarco-CE-bert-base-uncased-50k-latest/   \
+--model_path ./models/CE-bert-base-uncased-[TL]-latest/   \
 --cuda 1
 ```
 
