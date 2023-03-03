@@ -129,7 +129,7 @@ we run the following code to index the encoded documents using the following com
 ```
 python -m pyserini.index.faiss
   --input ./msmarco-data/embedding_path/[name/of/the/embedding_file] \
-  --output ./msmarco-data/DR_faiss_indexpath/[name/of/the/index] \
+  --output ./msmarco-data/DR_faiss_index/[name/of/the/index] \
   --hnsw
  ```
 
